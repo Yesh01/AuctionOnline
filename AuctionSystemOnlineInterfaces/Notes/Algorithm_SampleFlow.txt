@@ -1,0 +1,240 @@
+Auction System Algorithm Flow:
+
+1. Start Screen
+
+    Welcome Screen:
+        Show message: "Welcome to Auction Online House" → Click OK.
+        Proceed to Login Option Panel.
+
+2. Login Option Panel
+
+    Display Options:
+        Options: Admin or Customer.
+        If Admin is selected → Show Admin Panel.
+        If Customer is selected → Show Customer Panel.
+
+3. Admin Panel Flow
+Admin Panel Display:
+
+    Left Side:
+        Buttons: Add Item, Close Panel, Start Auction.
+        Input fields: Item Name, Starting Price, Image Upload.
+    Right Side:
+        Table showing: Item Name, Image, Starting Price, Bidder Name, Sold At.
+
+Add Item Process:
+
+    IF Add Item button clicked:
+        Check if fields Item Name, Starting Price, and Image Upload are filled.
+            IF any field is missing:
+                Show error message: "Please fill out the required fields".
+            ELSE:
+                Add the item to the table in the right-side view:
+                    Item Name, Starting Price, and Image are displayed.
+                    Bidder Name and Sold At remain NULL (unfilled).
+                Display success message: "Item added successfully".
+        Return to Admin Panel.
+
+Auction Start Process:
+
+    IF Start Auction button clicked:
+        Check if Item Name, Starting Price, and Image are filled.
+            IF any field is missing:
+                Show error message: "Please fill out the item details before starting the auction".
+            ELSE:
+                Check if any item in the Admin Panel table has NULL values in Bidder Name or Sold At.
+                    IF there are items with NULL values:
+                        Show error message: "Previous items must be auctioned before adding new ones".
+                    ELSE:
+                        Start the auction:
+                            Auction time starts (5 minutes countdown).
+                            Notify customers that bidding is open.
+                            Update item table as bids come in.
+                        Return to Admin Panel.
+
+Close Admin Panel:
+
+    IF Close Panel button clicked:
+        Return to Login Option Panel.
+
+Selecting Table Rows (Admin Action):
+
+    IF a row (item) is selected in the table:
+        Populate the left-side fields with Item Name, Starting Price, and Image.
+        Check if the Bidder Name and Sold At fields are NULL:
+            IF Bidder Name and Sold At are NOT NULL:
+                Prevent editing of Item Name, Starting Price, and Image.
+                Allow editing only of Bidder Name.
+
+4. Customer Panel Flow
+Customer Panel Display:
+
+    Left Side:
+        Input fields: Bidder Name, Bid Price.
+        Buttons: Add Bid, Close Panel.
+    Right Side:
+        Top Section: Displays the Current Item being auctioned (after Admin starts the auction), including Item Name, Starting Price, and Image.
+        Bottom Section: Shows a table of bids from customers, sorted by highest bid first (FIFO and priority queue concept).
+
+Add Bid Process:
+
+    IF Add Bid button clicked:
+        Check if both Bidder Name and Bid Price fields are filled.
+            IF any field is missing:
+                Show error message: "Please fill out Bidder Name and Bid Price".
+            ELSE:
+                Check if the Bid Price is greater than or equal to the Starting Price.
+                    IF Bid Price is lower than Starting Price:
+                        Show error message: "Bid price is too low".
+                    ELSE:
+                        Add the bid to the Bid Table.
+                        Update the Top Section showing the highest current bid.
+                        Display success message: "Bid added successfully".
+
+Close Customer Panel:
+
+    IF Close Panel button clicked:
+        Return to Login Option Panel.
+
+5. Auction End Process (Admin Panel)
+
+    When auction time reaches 0:
+        Automatically update the Admin Panel Table:
+            For each item, fill in:
+                Bidder Name: Name of the highest bidder.
+                Sold At: Timestamp of the auction end.
+                Price: Highest bid price.
+
+6. Timer Management
+
+    Timer:
+        Auction countdown (visible in the top right corner of both the Admin and Customer panels).
+        The auction starts when the Admin clicks the Start Auction button.
+        Default auction time is 5 minutes.
+
+Summary of Key IFs
+
+    IF Add Item clicked but fields are not filled → Show error message.
+    IF Start Auction clicked but no item added → Show error message.
+    IF row in the Admin Panel's table is selected → Allow editing unless the item has a bidder and a sold timestamp.
+    IF Add Bid clicked but fields are empty or bid is too low → Show error message.
+    IF auction time ends → Automatically update the table with the winning bidder's name and price.
+
+
+    -----> 2ND DRAFT FOR UPDATED Algo
+
+Updated Algorithm:
+
+I've made some updates to the algorithm to include the new controller classes and database integration. Here's the updated algorithm:
+Auction System Algorithm Flow
+1. Start Screen
+
+    Welcome Screen:
+        Show message: "Welcome to Auction Online House" → Click OK.
+        Proceed to Login Option Panel.
+
+2. Login Option Panel
+
+    Display Options:
+        Options: Admin or Customer.
+        If Admin is selected → Show Admin Panel.
+        If Customer is selected → Show Customer Panel.
+
+3. Admin Panel Flow
+Admin Panel Display:
+
+    Left Side:
+        Buttons: Add Item, Close Panel, Start Auction.
+        Input fields: Item Name, Starting Price, Image Upload.
+    Right Side:
+        Table showing: Item Name, Image, Starting Price, Bidder Name, Sold At.
+
+Add Item Process:
+
+    IF Add Item button clicked:
+        Check if fields Item Name, Starting Price, and Image Upload are filled.
+            IF any field is missing:
+                Show error message: "Please fill out the required fields".
+            ELSE:
+                Add the item to the database using AuctionController.
+                Update the Admin Panel Table with the new item.
+                Display success message: "Item added successfully".
+
+Auction Start Process:
+
+    IF Start Auction button clicked:
+        Check if Item Name, Starting Price, and Image are filled.
+            IF any field is missing:
+                Show error message: "Please fill out the item details before starting the auction".
+            ELSE:
+                Start the auction using AuctionController.
+                Update the Admin Panel Table with the auction status.
+                Display success message: "Auction started successfully".
+
+Close Admin Panel:
+
+    IF Close Panel button clicked:
+        Return to Login Option Panel.
+
+Selecting Table Rows (Admin Action):
+
+    IF a row (item) is selected in the table:
+        Populate the left-side fields with Item Name, Starting Price, and Image.
+        Check if the Bidder Name and Sold At fields are NULL:
+            IF Bidder Name and Sold At are NOT NULL:
+                Prevent editing of Item Name, Starting Price, and Image.
+                Allow editing only of Bidder Name.
+
+4. Customer Panel Flow
+Customer Panel Display:
+
+    Left Side:
+        Input fields: Bidder Name, Bid Price.
+        Buttons: Add Bid, Close Panel.
+    Right Side:
+        Top Section: Displays the Current Item being auctioned (after Admin starts the auction), including Item Name, Starting Price, and Image.
+        Bottom Section: Shows a table of bids from customers, sorted by highest bid first (FIFO and priority queue concept).
+
+Add Bid Process:
+
+    IF Add Bid button clicked:
+        Check if both Bidder Name and Bid Price fields are filled.
+            IF any field is missing:
+                Show error message: "Please fill out Bidder Name and Bid Price".
+            ELSE:
+                Add the bid to the database using BidController.
+                Update the Customer Panel Table with the new bid.
+                Display success message: "Bid added successfully".
+
+Close Customer Panel:
+
+    IF Close Panel button clicked:
+        Return to Login Option Panel.
+
+5. Auction End Process (Admin Panel)
+
+    When auction time reaches 0:
+        Automatically update the Admin Panel Table:
+            For each item, fill in:
+                Bidder Name: Name of the highest bidder.
+                Sold At: Timestamp of the auction end.
+                Price: Highest bid price.
+
+6. Timer Management
+
+    Timer:
+        Auction countdown (visible in the top right corner of both the Admin and Customer panels).
+        The auction starts when the Admin clicks the Start Auction button.
+        Default auction time is 5 minutes.
+
+Summary of Key IFs
+
+    IF Add Item clicked but fields are not filled → Show error message.
+    IF Start Auction clicked but no item added → Show error message.
+    IF row in the Admin Panel's table is selected → Allow editing unless the item has a bidder and a sold timestamp.
+    IF Add Bid clicked but fields are empty or bid is too low → Show error message.
+    IF auction time ends → Automatically update the table with the winning bidder's name and price.
+
+Database Integration:
+
+We'll use a SQL database to store auction data, items, bids, and users. We'll use JDBC or Hibernate to interface with the database.

@@ -1,0 +1,94 @@
+e.g. file struc [angas neto] 
+
+com/dsa/
+│
+├── Main.java                  # Entry point of the system
+├── AuctionSystem.java         # Main class to manage and launch the auction system
+│
+├── admin/                     # Package for Admin-related classes
+│   ├── AdminPanel.java        # Admin panel UI for managing items and auctions
+│   ├── AuctionItem.java       # Model class representing an auction item
+│   ├── AuctionManager.java    # Class to handle auction logic and item management
+│   └── ErrorHandler.java      # Class for handling and displaying error messages
+│
+├── customer/                  # Package for Customer-related classes
+│   ├── CustomerPanel.java     # Customer panel UI for placing bids and viewing items
+│   ├── Bid.java               # Model class representing a bid
+│   ├── BidManager.java        # Class to handle bid logic and management
+│   └── ErrorHandler.java      # Class for handling and displaying error messages
+│
+└── util/                      # Package for utility classes
+    ├── AuctionTimer.java      # Timer class to manage auction countdown and log-in
+    ├── ImageUploader.java     # Utility class for image upload and handling
+    └── UIHelper.java          # Utility class for common UI operations and helpers
+
+tots?
+
+Changes of Plan -->
+
+main/java/com/dsa
+│
+├── Main.java                        # Entry point of the system
+├── AuctionSystem.java               # Main class to manage and launch the auction system
+├── WelcomeFrame.java                # Welcome screen where the user selects Admin or Customer
+│
+├── admin/                           # Package for Admin-related classes
+│   ├── AdminPanel.java              # Admin panel UI for managing items and auctions
+│   ├── AuctionItem.java             # Model class representing an auction item
+│   ├── Auction.java                 # Model class representing an auction
+│   ├── AuctionManager.java          # Class to handle auction logic and item management
+│
+├── customer/                        # Package for Customer-related classes
+│   ├── CustomerPanel.java           # Customer panel UI for placing bids and viewing items
+│   ├── Bid.java                     # Model class representing a bid
+│   ├── BidManager.java              # Class to handle bid logic and management
+│
+├── util/                            # Package for utility classes
+│   ├── AuctionTimer.java            # Timer class to manage auction countdown and log-in
+│   ├── ImageUploader.java           # Utility class for image upload and handling
+│   ├── UIHelper.java                # Utility class for common UI operations and helpers
+│   └── ErrorHandler.java            # General class for handling and displaying error messages
+│
+└── controller/                      # Package for Controller classes (Separation of Logic)
+    ├── AdminController.java         # Controller to handle admin-related operations
+    ├── CustomerController.java      # Controller to handle customer-related operations
+    └── AuctionController.java       # Controller to manage overall auction flow (start, reset, tie handling)
+
+
+    main/java/com/dsa
+│
+├── Main.java                        # Done
+├── AuctionSystem.java               # Done
+├── WelcomeFrame.java                # Done
+│
+├── admin/
+│   ├── AdminPanel.java              # I dont think so
+│   ├── AuctionItem.java             # Done
+│   ├── Auction.java                 # I don't think so
+│   ├── AuctionManager.java          # Not yet
+│
+├── customer/                        #
+│   ├── CustomerPanel.java           # I don't think so
+│   ├── Bid.java                     # I don't think so
+│   ├── BidManager.java              # Not touch yet
+│                                    #
+└── controller/
+│   ├── AdminController.java         # Not touch yet
+│   ├── AuctionController.java       # I don't think so
+│   ├── BidController.java           # I don't think so
+│   ├── CustomerController.java      # Not touch yet
+│
+└── database/
+│   ├── DatabseConnector.java        # I don't think so
+│
+│
+├── util/
+│   ├── AuctionTimer.java            # I don't think soUSE
+│   ├── ImageUploader.java           # I dont't think so
+│   ├── UIHelper.java                # not touch yet
+│   └── ErrorHandler.java            # I don't think so
+│
+└── database/
+│   ├── AdminController.java         # I dont't think so
+│
+

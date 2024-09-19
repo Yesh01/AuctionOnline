@@ -1,0 +1,11 @@
+auction-system/                    # Root directory of the project
+├── src/                           # Source files directory
+│   └── com/dsa/               # Package for the auction system
+│       ├── Main.java              # Main entry point for the application
+│       ├── WelcomeFrame.java      # Frame for welcome screen (Admin/Customer selection)
+│       ├── AdminPanel.java        # Frame for Admin actions (Add Item, Start Auction)
+│       ├── CustomerPanel.java     # Frame for Customer actions (Place Bids)
+│       ├── AuctionTimer.java      # Handles auction countdown and timer
+│       
+
+Not Done yet, Dont Consider this. this is just a sample Outline what File is using Swing.

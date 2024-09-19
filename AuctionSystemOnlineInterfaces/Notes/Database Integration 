@@ -1,0 +1,64 @@
+Algorithm-based suggestions about Database using SQL ofc
+
+Auction class design
+
+The Auction class Design:
+
+    Attributes:
+        auctionId
+        itemId (foreign key referencing the AuctionItem table)
+        startTime
+        endTime
+        currentBid
+        bidHistory (a list of bids)
+    Methods:
+        startAuction(): starts the auction and sets the startTime
+        stopAuction(): stops the auction and sets the endTime
+        updateCurrentBid(Bid bid): updates the currentBid and adds the bid to the bidHistory
+        addBidToHistory(Bid bid): adds a bid to the bidHistory
+
+AuctionItem class design
+
+The AuctionItem class should be designed to accommodate the algorithm's requirements. Here's a suggested design:
+
+    Attributes:
+        itemId
+        itemName
+        description
+        startingPrice
+        imagePath
+        soldPrice
+        isSold
+        bidderName
+    Methods:
+        getHighestBid(): returns the highest bid for the item
+        updateSoldPrice(double price): updates the soldPrice and sets isSold to true
+
+AuctionController class design
+
+The AuctionController class Design:
+
+    Methods:
+        addItem(AuctionItem item): adds an item to the database
+        startAuction(Auction auction): starts an auction and updates the database
+        stopAuction(Auction auction): stops an auction and updates the database
+        updateAuctionItem(AuctionItem item, Bid bid): updates an auction item with a new bid
+
+BidController class design
+
+The BidController class Design:
+
+    Methods:
+        addBid(Bid bid): adds a bid to the database
+        getHighestBid(AuctionItem item): returns the highest bid for an item
+
+Database integration
+
+The database integration Design:
+
+    Tables:
+        AuctionItem: stores auction item data
+        Auction: stores auction data
+        Bid: stores bid data
+        User: stores user data
+        Admin: optional? 
